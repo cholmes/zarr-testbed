@@ -10,9 +10,14 @@ suite assembled from real data rather than from fixtures.
 
 **Open it in a browser:**
 
-- [STAC Browser](https://radiantearth.github.io/stac-browser/#/external/cholmes.github.io/zarr-testbed/catalog.json)
-- Portolan Browser, locally: `#/external/https://cholmes.github.io/zarr-testbed/catalog.json`
-- The raw root: <https://cholmes.github.io/zarr-testbed/catalog.json>
+- **[Portolan Browser](https://browser.portolan-sdi.org/#/external/raw.githubusercontent.com/cholmes/zarr-testbed/refs/heads/main/catalog.json)**
+- [STAC Browser](https://radiantearth.github.io/stac-browser/#/external/raw.githubusercontent.com/cholmes/zarr-testbed/refs/heads/main/catalog.json)
+- The root document: <https://raw.githubusercontent.com/cholmes/zarr-testbed/refs/heads/main/catalog.json>
+
+The catalog is served straight from `raw.githubusercontent.com`, which sends
+`Access-Control-Allow-Origin: *`, so a browser on any origin can read it. There
+is nothing to deploy. Raw responses are cached for about five minutes, so a
+push takes a moment to show up.
 
 ## Why this exists
 
@@ -168,7 +173,7 @@ stays dependency-free:
 # in a portolan-browser checkout, on the Zarr branch
 corepack pnpm exec vite --port 8095 --strictPort &
 BROWSER_URL=http://localhost:8095 \
-  CATALOG_URL=https://cholmes.github.io/zarr-testbed \
+  CATALOG_URL=https://raw.githubusercontent.com/cholmes/zarr-testbed/refs/heads/main \
   node tests/manual/zarr-wild-check.mjs
 ```
 

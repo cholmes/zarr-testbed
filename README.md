@@ -55,6 +55,10 @@ breaks, so the tier doubles as the argument for each rule.
 The `client-gaps` tier is deliberate. A testbed that only holds cases the
 client already passes stops being useful the day it is written.
 
+Every collection says whether its outcome is **expected** or **measured**, and
+a measured one carries the date and the notice text verbatim. All six
+collections added on 2026-11-06 are measured.
+
 ## The stores
 
 

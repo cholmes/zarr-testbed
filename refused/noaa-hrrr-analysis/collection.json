@@ -1,0 +1,109 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/datacube/v2.2.0/schema.json"
+  ],
+  "id": "noaa-hrrr-analysis",
+  "title": "NOAA HRRR analysis, a projected x/y grid in metres",
+  "description": "A 3 km analysis cube of NOAA HRRR, published by dynamical.org as an Icechunk repository with 27 variables on dims (time, y, x). The axes are projected metres on the HRRR Lambert Conformal Conic grid, which spans about -2,697,520 to 2,696,480 on x and -1,587,306 to 1,586,694 on y.\n\nIt is in the testbed for the CRS path. The collection declares no `reference_system` on either spatial dimension, and EPSG defines no code for the HRRR grid. A client must read the grid mapping from the store and must not assume EPSG:4326 because the axes are named x and y. A client that stamps 4326 on a metre grid places the data about 2,700,000 degrees from where it belongs.\n\nMeasured browser outcome, 2026-11-06: refused by the chunk-amplification guard, which reports that one map tile would read 2,160 times the data it draws. The notice arrives from metadata alone. No chunk is fetched.\n\nThe CRS path is therefore not reached. The store stays in the testbed because the amplification guard must keep firing before the CRS guard, and because a display-chunked HRRR copy would make this the projected-grid test case.",
+  "license": "CC-BY-4.0",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -134.09547424316406,
+          21.13812255859375,
+          -60.91719436645508,
+          52.61565399169922
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2014-10-01T00:00:00Z",
+          null
+        ]
+      ]
+    }
+  },
+  "keywords": [
+    "refused",
+    "chunk-amplification",
+    "projected-crs",
+    "lambert-conformal-conic",
+    "icechunk",
+    "weather"
+  ],
+  "cube:dimensions": {
+    "time": {
+      "type": "temporal",
+      "extent": [
+        "2014-10-01T00:00:00Z",
+        null
+      ]
+    },
+    "x": {
+      "type": "spatial",
+      "axis": "x",
+      "extent": [
+        -2697520.142521929,
+        2696479.857478071
+      ],
+      "unit": "m"
+    },
+    "y": {
+      "type": "spatial",
+      "axis": "y",
+      "extent": [
+        -1587306.152556665,
+        1586693.847443335
+      ],
+      "unit": "m"
+    }
+  },
+  "cube:variables": {
+    "temperature_2m": {
+      "dimensions": [
+        "time",
+        "y",
+        "x"
+      ],
+      "type": "data",
+      "description": "Temperature at 2 m. One of 27 variables in the store.",
+      "unit": "C"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Wild Zarr testbed"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Refused"
+    },
+    {
+      "rel": "via",
+      "href": "https://stac.dynamical.org/noaa-hrrr-analysis/collection.json",
+      "type": "application/json",
+      "title": "Source collection"
+    }
+  ],
+  "assets": {
+    "icechunk-https": {
+      "href": "https://dynamical-noaa-hrrr.s3.us-west-2.amazonaws.com/noaa-hrrr-analysis/v0.2.0.icechunk",
+      "type": "application/x-icechunk",
+      "title": "Icechunk repository (HTTPS)",
+      "roles": [
+        "data"
+      ]
+    }
+  }
+}

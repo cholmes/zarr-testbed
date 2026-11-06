@@ -1,0 +1,217 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/zarr/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/datacube/v2.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/render/v2.0.0/schema.json"
+  ],
+  "id": "goes-18-fdcc-icechunk",
+  "title": "GOES-18 fire detections, virtual Icechunk over NOAA netCDF",
+  "description": "NOAA GOES-18 ABI L2 fire and hot-spot characterization (FDC), as an Icechunk repository of virtual references into NOAA public netCDF files on S3. No pixel data is copied. It covers about two weeks and 4,000 scans around the January 2025 Los Angeles fires. Published by @mmidzik as a Portolan catalog, and described in https://github.com/mmidzik/goes-fdc-catalog.\n\nThree things make this a test case:\n\n1. The grid is the GOES-R ABI fixed grid, a geostationary projection. EPSG defines no code for it, so the store carries `proj:wkt2` whose method reads `Geostationary Satellite (Sweep X)`. proj4 names the same projection `Geostationary Satellite View`, and `wkt-parser` 1.6.0 maps neither name nor keeps the satellite height. A client must register the alias itself.\n2. The asset media type reads `application/vnd.zarr; version=3`, but the store is an Icechunk repository. A client cannot tell from the type that it needs the Icechunk library.\n3. The bbox crosses the antimeridian, as [175.62, 14.57, -89.62, 53.50].\n\nChunks are [1, 250, 250], so one map tile reads one time step and the amplification factor is 1.\n\nMeasured browser outcome, 2026-11-06, Portolan Browser at PR 92: the store opens and then nothing happens. The browser reads `repo`, one snapshot and one manifest, so the Icechunk repository is readable. It then requests no chunk, draws no pixels, and posts no notice. The layer control lists all five fire variables, so the STAC metadata reads correctly.\n\nThe media type is not the cause. An A/B run with the same store typed `application/x-icechunk` behaves identically, and the href already ends in `/icechunk`, which the browser matches on.\n\nThis store belongs in the client-gaps tier: it looks conformant and the client fails it silently. A silent failure is worse than a refusal, because the user cannot tell a slow store from a broken one. The first thing to fix is the silence.",
+  "license": "CC0-1.0",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          175.62358,
+          14.57134,
+          -89.62357,
+          53.50006
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-01-07T00:02:35Z",
+          "2025-01-20T23:57:35Z"
+        ]
+      ]
+    }
+  },
+  "keywords": [
+    "client-gap",
+    "icechunk",
+    "virtual",
+    "geostationary",
+    "antimeridian"
+  ],
+  "cube:dimensions": {
+    "time": {
+      "type": "temporal",
+      "extent": [
+        "2025-01-07T00:02:35Z",
+        "2025-01-20T23:57:35Z"
+      ]
+    },
+    "x": {
+      "type": "spatial",
+      "axis": "x",
+      "extent": [
+        -2504019.637719609,
+        2504019.6336837565
+      ],
+      "unit": "m",
+      "step": 2004.017315487541
+    },
+    "y": {
+      "type": "spatial",
+      "axis": "y",
+      "extent": [
+        1584175.8003109246,
+        4588197.756226748
+      ],
+      "unit": "m",
+      "step": -2004.017315487541
+    }
+  },
+  "cube:variables": {
+    "Area": {
+      "dimensions": [
+        "time",
+        "y",
+        "x"
+      ],
+      "type": "data",
+      "description": "Fire Area",
+      "unit": "m2",
+      "nodata": 65535
+    },
+    "DQF": {
+      "dimensions": [
+        "time",
+        "y",
+        "x"
+      ],
+      "type": "data",
+      "description": "ABI L2+ Fire data quality flags",
+      "unit": "1",
+      "nodata": 255
+    },
+    "Mask": {
+      "dimensions": [
+        "time",
+        "y",
+        "x"
+      ],
+      "type": "data",
+      "description": "Fire Mask",
+      "unit": "1",
+      "nodata": -99
+    },
+    "Power": {
+      "dimensions": [
+        "time",
+        "y",
+        "x"
+      ],
+      "type": "data",
+      "description": "Fire Radiative Power",
+      "unit": "MW",
+      "nodata": -9
+    },
+    "Temp": {
+      "dimensions": [
+        "time",
+        "y",
+        "x"
+      ],
+      "type": "data",
+      "description": "Fire Temperature",
+      "unit": "K",
+      "nodata": 65535
+    }
+  },
+  "renders": {
+    "frp": {
+      "title": "Fire radiative power (MW)",
+      "assets": [
+        "icechunk"
+      ],
+      "rescale": [
+        [
+          0,
+          200
+        ]
+      ],
+      "colormap_name": "inferno",
+      "nodata": -9
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Wild Zarr testbed"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Client gaps"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.source.coop/mmidzik/goes-fdc/goes-18-fdcc/collection.json",
+      "type": "application/json",
+      "title": "Source collection"
+    }
+  ],
+  "assets": {
+    "icechunk": {
+      "href": "https://data.source.coop/mmidzik/goes-fdc/goes-18-fdcc/icechunk",
+      "type": "application/vnd.zarr; version=3",
+      "title": "Virtual Zarr cube (Icechunk repository)",
+      "roles": [
+        "data"
+      ],
+      "zarr:zarr_format": 3,
+      "zarr:node_type": "group",
+      "bands": [
+        {
+          "name": "Area",
+          "description": "Fire Area",
+          "unit": "m2",
+          "data_type": "uint16",
+          "nodata": 65535
+        },
+        {
+          "name": "DQF",
+          "description": "ABI L2+ Fire data quality flags",
+          "unit": "1",
+          "data_type": "uint8",
+          "nodata": 255
+        },
+        {
+          "name": "Mask",
+          "description": "Fire Mask",
+          "unit": "1",
+          "data_type": "int16",
+          "nodata": -99
+        },
+        {
+          "name": "Power",
+          "description": "Fire Radiative Power",
+          "unit": "MW",
+          "data_type": "float32",
+          "nodata": -9,
+          "statistics": {
+            "minimum": 0,
+            "maximum": 200
+          }
+        },
+        {
+          "name": "Temp",
+          "description": "Fire Temperature",
+          "unit": "K",
+          "data_type": "uint16",
+          "nodata": 65535
+        }
+      ]
+    }
+  }
+}

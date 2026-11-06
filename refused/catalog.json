@@ -1,0 +1,99 @@
+{
+  "type": "Catalog",
+  "stac_version": "1.1.0",
+  "id": "zarr-testbed-refused",
+  "title": "Wild Zarr testbed: Refused",
+  "description": "Stores a client must refuse from metadata alone, with a named reason and no chunk fetched.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Wild Zarr testbed"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Wild Zarr testbed"
+    },
+    {
+      "rel": "child",
+      "href": "./carbonplan-4d-climate/collection.json",
+      "type": "application/json",
+      "title": "CarbonPlan 4D climate demo (tavg/prec monthly climatology)"
+    },
+    {
+      "rel": "child",
+      "href": "./cbofs-ssh/collection.json",
+      "type": "application/json",
+      "title": "CBOFS sea surface height (ROMS curvilinear, kerchunk-indexed)"
+    },
+    {
+      "rel": "child",
+      "href": "./cmip6-gfdl-tas/collection.json",
+      "type": "application/json",
+      "title": "CMIP6 GFDL-ESM4 historical tas (monthly, 1850-2014)"
+    },
+    {
+      "rel": "child",
+      "href": "./dynamical-gfs-analysis/collection.json",
+      "type": "application/json",
+      "title": "NOAA GFS analysis, Icechunk, chunked for time series"
+    },
+    {
+      "rel": "child",
+      "href": "./dynamical-gfs-virtual-gribberish/collection.json",
+      "type": "application/json",
+      "title": "NOAA GFS analysis, virtual Icechunk with a GRIB codec"
+    },
+    {
+      "rel": "child",
+      "href": "./eopf-s2-l2a-v2-band/collection.json",
+      "type": "application/json",
+      "title": "EOPF Sentinel-2 L2A (unconsolidated Zarr V2), one pinned band group"
+    },
+    {
+      "rel": "child",
+      "href": "./gmgsi-icechunk/collection.json",
+      "type": "application/json",
+      "title": "GMGSI global geostationary mosaic, hourly (Icechunk)"
+    },
+    {
+      "rel": "child",
+      "href": "./its-live-velocity/collection.json",
+      "type": "application/json",
+      "title": "ITS_LIVE ice velocity datacube, N60W140 (polar stereographic)"
+    },
+    {
+      "rel": "child",
+      "href": "./noaa-gefs-analysis/collection.json",
+      "type": "application/json",
+      "title": "NOAA GEFS analysis (dynamical.org), v0.1.2"
+    },
+    {
+      "rel": "child",
+      "href": "./noaa-hrrr-analysis/collection.json",
+      "type": "application/json",
+      "title": "NOAA HRRR analysis, a projected x/y grid in metres"
+    },
+    {
+      "rel": "child",
+      "href": "./nwm-streamflow/collection.json",
+      "type": "application/json",
+      "title": "NOAA National Water Model retrospective streamflow (CONUS reach network)"
+    },
+    {
+      "rel": "child",
+      "href": "./tessera-global-rgb/collection.json",
+      "type": "application/json",
+      "title": "Tessera global RGB visualization mosaic"
+    },
+    {
+      "rel": "child",
+      "href": "./tessera-utm30-embeddings/collection.json",
+      "type": "application/json",
+      "title": "Tessera UTM zone 30 geospatial embeddings"
+    }
+  ]
+}

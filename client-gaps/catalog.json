@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "stac_version": "1.1.0",
+  "id": "zarr-testbed-client-gaps",
+  "title": "Wild Zarr testbed: Client gaps",
+  "description": "Stores that look conformant, where the client today does the wrong thing. Each description records what was measured.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Wild Zarr testbed"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Wild Zarr testbed"
+    },
+    {
+      "rel": "child",
+      "href": "./goes-18-fdcc-icechunk/collection.json",
+      "type": "application/json",
+      "title": "GOES-18 fire detections, virtual Icechunk over NOAA netCDF"
+    }
+  ]
+}

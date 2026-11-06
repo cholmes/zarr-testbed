@@ -1,0 +1,115 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/datacube/v2.2.0/schema.json"
+  ],
+  "id": "dynamical-gfs-analysis",
+  "title": "NOAA GFS analysis, Icechunk, chunked for time series",
+  "description": "An hourly analysis cube of NOAA GFS, published by dynamical.org as an Icechunk repository with 25 variables on dims (time, latitude, longitude). The store is chunked [1440, 50, 50]. One chunk therefore holds 1,440 time steps of a 50 by 50 patch.\n\nThis is the measurement that set the amplification guard. One tile transfers 1.05 MB to draw 2,500 pixels. A global view of one variable is about 435 tiles, or about 450 MB.\n\nThe store is not defective. It serves a time series at a point very well, which is the opposite access pattern from a map. It is the case for the spec to recommend a second, display-chunked copy rather than to call this layout wrong.\n\nExpected browser outcome: refused by the chunk-amplification guard, with the chunk-shape notice, before any chunk is fetched.",
+  "license": "CC-BY-4.0",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180,
+          -90,
+          179.75,
+          90
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2021-05-01T00:00:00Z",
+          null
+        ]
+      ]
+    }
+  },
+  "keywords": [
+    "refused",
+    "chunk-amplification",
+    "icechunk",
+    "weather"
+  ],
+  "cube:dimensions": {
+    "time": {
+      "type": "temporal",
+      "extent": [
+        "2021-05-01T00:00:00Z",
+        null
+      ]
+    },
+    "longitude": {
+      "type": "spatial",
+      "axis": "x",
+      "extent": [
+        -180,
+        179.75
+      ],
+      "reference_system": 4326
+    },
+    "latitude": {
+      "type": "spatial",
+      "axis": "y",
+      "extent": [
+        -90,
+        90
+      ],
+      "reference_system": 4326
+    }
+  },
+  "cube:variables": {
+    "temperature_2m": {
+      "dimensions": [
+        "time",
+        "latitude",
+        "longitude"
+      ],
+      "type": "data",
+      "description": "Temperature at 2 m. One of 25 variables in the store.",
+      "unit": "C"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Wild Zarr testbed"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Refused"
+    },
+    {
+      "rel": "via",
+      "href": "https://stac.dynamical.org/noaa-gfs-analysis/collection.json",
+      "type": "application/json",
+      "title": "Source collection"
+    }
+  ],
+  "assets": {
+    "icechunk-https": {
+      "href": "https://dynamical-noaa-gfs.s3.us-west-2.amazonaws.com/noaa-gfs-analysis/v0.1.0.icechunk",
+      "type": "application/x-icechunk",
+      "title": "Icechunk repository (HTTPS)",
+      "roles": [
+        "data"
+      ]
+    },
+    "icechunk-s3": {
+      "href": "s3://dynamical-noaa-gfs/noaa-gfs-analysis/v0.1.0.icechunk/",
+      "type": "application/x-icechunk",
+      "title": "Icechunk repository (S3)",
+      "roles": [
+        "data"
+      ]
+    }
+  }
+}

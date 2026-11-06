@@ -1,0 +1,51 @@
+{
+  "type": "Catalog",
+  "stac_version": "1.1.0",
+  "id": "zarr-testbed",
+  "title": "Wild Zarr testbed",
+  "description": "A catalog of public Zarr and Icechunk stores in the wild, for testing Zarr\nsupport in Portolan and STAC clients. It copies no pixel data. Every\ncollection points at the publisher's own store and records what a client\ndoes with it.\n\nThe tiers are expected outcomes, not data themes. `renders` draws at a world\nview. `held-back` draws only after a zoom, because the store has no coarse\nlevel. `refused` must produce a named notice and must not fetch the store.\n`errors` must produce a visible load error. `pending` is not yet verified in\na browser.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./catalog.json",
+      "type": "application/json",
+      "title": "Wild Zarr testbed"
+    },
+    {
+      "rel": "child",
+      "href": "./renders/catalog.json",
+      "type": "application/json",
+      "title": "Renders (9)"
+    },
+    {
+      "rel": "child",
+      "href": "./held-back/catalog.json",
+      "type": "application/json",
+      "title": "Held back (4)"
+    },
+    {
+      "rel": "child",
+      "href": "./refused/catalog.json",
+      "type": "application/json",
+      "title": "Refused (13)"
+    },
+    {
+      "rel": "child",
+      "href": "./errors/catalog.json",
+      "type": "application/json",
+      "title": "Errors (1)"
+    },
+    {
+      "rel": "child",
+      "href": "./client-gaps/catalog.json",
+      "type": "application/json",
+      "title": "Client gaps (1)"
+    },
+    {
+      "rel": "about",
+      "href": "https://github.com/portolan-sdi/portolan-spec/issues/132",
+      "type": "text/html",
+      "title": "portolan-spec issue 132: Zarr conventions and best practices"
+    }
+  ]
+}

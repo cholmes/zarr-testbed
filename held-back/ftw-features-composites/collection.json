@@ -1,0 +1,166 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/datacube/v2.2.0/schema.json",
+    "https://stac-extensions.github.io/render/v2.0.0/schema.json"
+  ],
+  "id": "ftw-features-composites",
+  "title": "FTW global Sentinel-2 composites, no overviews",
+  "description": "The Fields of The World Sentinel-2 planting and harvest median composites, as one global Zarr V3 mosaic at about 10 m. Dims are (time, band, y, x) with bands B02, B03, B04, B08 and N_VALID_PIXELS. The store is 4,007,517 pixels across and declares no `multiscales`, so there is no coarse level to fall back to. A world view of the finest level would ask for about 375,000 chunks.\n\nThis is the control case for the overview requirement. Its sibling collection, the FTW predictions store, holds the same grid with 14 pyramid levels and draws at a world view.\n\nMeasured browser outcome, 2026-11-06: held back by the zoom guard, which reports \"This Zarr store has no overviews, so it draws only from zoom level 11. Zoom in to see it.\" The canvas stays blank at a world view and the store transferred 0.56 MB. It draws in true colour once zoomed past level 11.",
+  "license": "CC-BY-4.0",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180,
+          -57.830146,
+          180,
+          83.748345
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2024-01-01T00:00:00Z",
+          "2025-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "keywords": [
+    "held-back",
+    "no-overviews",
+    "sentinel-2",
+    "zarr-v3"
+  ],
+  "cube:dimensions": {
+    "time": {
+      "type": "temporal",
+      "extent": [
+        "2024-01-01T00:00:00Z",
+        "2025-12-31T23:59:59Z"
+      ]
+    },
+    "x": {
+      "type": "spatial",
+      "axis": "x",
+      "extent": [
+        -180,
+        180
+      ],
+      "reference_system": 4326
+    },
+    "y": {
+      "type": "spatial",
+      "axis": "y",
+      "extent": [
+        -57.830146,
+        83.748345
+      ],
+      "reference_system": 4326
+    }
+  },
+  "cube:variables": {
+    "data": {
+      "dimensions": [
+        "time",
+        "band",
+        "y",
+        "x"
+      ],
+      "type": "data",
+      "description": "Sentinel-2 median composite reflectance"
+    }
+  },
+  "renders": {
+    "true-colour": {
+      "title": "Sentinel-2 true colour, harvest composite",
+      "assets": [
+        "data"
+      ],
+      "bidx": [
+        3,
+        2,
+        1
+      ],
+      "rescale": [
+        [
+          0,
+          3000
+        ]
+      ]
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Wild Zarr testbed"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Held back"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.source.coop/ftw/global-data/features/zarr/collection.json",
+      "type": "application/json",
+      "title": "Source collection"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://data.source.coop/ftw/global-data/features/zarr/alpha/global.zarr",
+      "type": "application/vnd.zarr; version=3",
+      "title": "FTW global composite mosaic (Zarr V3, EPSG:4326, ~10 m)",
+      "roles": [
+        "data",
+        "cloud-optimized"
+      ],
+      "bands": [
+        {
+          "name": "B02",
+          "description": "Blue",
+          "data_type": "uint16",
+          "statistics": {
+            "minimum": 0,
+            "maximum": 3000
+          }
+        },
+        {
+          "name": "B03",
+          "description": "Green",
+          "data_type": "uint16",
+          "statistics": {
+            "minimum": 0,
+            "maximum": 3000
+          }
+        },
+        {
+          "name": "B04",
+          "description": "Red",
+          "data_type": "uint16",
+          "statistics": {
+            "minimum": 0,
+            "maximum": 3000
+          }
+        },
+        {
+          "name": "B08",
+          "description": "Near infrared",
+          "data_type": "uint16",
+          "statistics": {
+            "minimum": 0,
+            "maximum": 3000
+          }
+        }
+      ]
+    }
+  }
+}

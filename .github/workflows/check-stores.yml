@@ -1,0 +1,37 @@
+name: Check stores
+
+# Wild stores rot. A publisher moves a bucket, drops a CORS header, or deletes
+# a snapshot. A testbed that does not notice starts reporting its own rot as a
+# client defect, so this runs weekly and fails loudly.
+
+on:
+  schedule:
+    - cron: '17 6 * * 1'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '**/collection.json'
+      - 'scripts/check-stores.mjs'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: 22
+      - run: node scripts/build-catalogs.mjs --check
+      - name: Probe every store
+        run: node scripts/check-stores.mjs
+      # The table is the evidence, so keep it even when the job fails.
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: store-status
+          path: STATUS.md

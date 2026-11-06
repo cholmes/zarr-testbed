@@ -1,0 +1,75 @@
+{
+  "type": "Catalog",
+  "stac_version": "1.1.0",
+  "id": "zarr-testbed-renders",
+  "title": "Wild Zarr testbed: Renders",
+  "description": "Stores that draw at a world view, with no zoom gesture.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Wild Zarr testbed"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Wild Zarr testbed"
+    },
+    {
+      "rel": "child",
+      "href": "./carbonplan-2d-tavg/collection.json",
+      "type": "application/json",
+      "title": "CarbonPlan 2D tavg demo (unconsolidated)"
+    },
+    {
+      "rel": "child",
+      "href": "./carbonplan-3d-tavg-prec/collection.json",
+      "type": "application/json",
+      "title": "CarbonPlan 3D tavg/prec demo (band axis, no month axis)"
+    },
+    {
+      "rel": "child",
+      "href": "./carbonplan-v2-2d-tavg/collection.json",
+      "type": "application/json",
+      "title": "CarbonPlan 2D tavg demo, v2 bucket prefix (ndpyramid)"
+    },
+    {
+      "rel": "child",
+      "href": "./eopf-s2-l2a-zarr3/collection.json",
+      "type": "application/json",
+      "title": "EOPF Sentinel-2 L2A (GeoZarr, Zarr V3), one pinned item"
+    },
+    {
+      "rel": "child",
+      "href": "./ftw-predictions-zarr/collection.json",
+      "type": "application/json",
+      "title": "Fields of The World: global field prediction probabilities (Zarr V3, 14 levels)"
+    },
+    {
+      "rel": "child",
+      "href": "./italy-aerial-ortho/collection.json",
+      "type": "application/json",
+      "title": "Italy aerial orthophoto (AGEA), 12-level Zarr V3 pyramid"
+    },
+    {
+      "rel": "child",
+      "href": "./nasa-rasi-icechunk-virtual/collection.json",
+      "type": "application/json",
+      "title": "NASA Water Insight RASI, historical (virtual Icechunk)"
+    },
+    {
+      "rel": "child",
+      "href": "./tessera-life-biodiversity/collection.json",
+      "type": "application/json",
+      "title": "LIFE: land-cover change impacts on future extinctions, v1.01"
+    },
+    {
+      "rel": "child",
+      "href": "./wsf-tracker/collection.json",
+      "type": "application/json",
+      "title": "WSF Tracker: built-up area emergence index, 2016-2026"
+    }
+  ]
+}

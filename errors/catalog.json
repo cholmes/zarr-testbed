@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "stac_version": "1.1.0",
+  "id": "zarr-testbed-errors",
+  "title": "Wild Zarr testbed: Errors",
+  "description": "Stores that must produce a visible load error, promptly, and never a silent hang.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Wild Zarr testbed"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Wild Zarr testbed"
+    },
+    {
+      "rel": "child",
+      "href": "./era5-arco-no-cors/collection.json",
+      "type": "application/json",
+      "title": "ERA5 ARCO (Google/ECMWF), no CORS"
+    }
+  ]
+}

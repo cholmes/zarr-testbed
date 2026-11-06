@@ -1,0 +1,45 @@
+{
+  "type": "Catalog",
+  "stac_version": "1.1.0",
+  "id": "zarr-testbed-held-back",
+  "title": "Wild Zarr testbed: Held back",
+  "description": "Stores that draw only after a zoom, because no coarse level exists. A client must say so rather than hang.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Wild Zarr testbed"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Wild Zarr testbed"
+    },
+    {
+      "rel": "child",
+      "href": "./carbonplan-v1-2d-tavg/collection.json",
+      "type": "application/json",
+      "title": "CarbonPlan 2D tavg demo, v1 prefix (a pyramid that declares one level)"
+    },
+    {
+      "rel": "child",
+      "href": "./ctrees-agb-icechunk/collection.json",
+      "type": "application/json",
+      "title": "CTrees global aboveground biomass, 100 m annual (Icechunk)"
+    },
+    {
+      "rel": "child",
+      "href": "./ftw-features-composites/collection.json",
+      "type": "application/json",
+      "title": "FTW global Sentinel-2 composites, no overviews"
+    },
+    {
+      "rel": "child",
+      "href": "./mur-sst/collection.json",
+      "type": "application/json",
+      "title": "MUR SST: multi-scale ultra-high resolution sea surface temperature"
+    }
+  ]
+}

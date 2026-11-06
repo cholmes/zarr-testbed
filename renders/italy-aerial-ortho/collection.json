@@ -1,0 +1,111 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/datacube/v2.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json"
+  ],
+  "id": "italy-aerial-ortho",
+  "title": "Italy aerial orthophoto (AGEA), 12-level Zarr V3 pyramid",
+  "description": "An aerial orthophoto mosaic of Italy, republished by mindearth as a Zarr V3 store with a 12-level pyramid. The store is the reference case for a browser-friendly raster Zarr. Root attributes carry `proj:code` EPSG:3857, `proj:wkt2`, `spatial:transform`, `spatial:bbox` and `multiscales` in the object (`layout`) spelling, with one entry per level naming its `asset` (\"0\" finest .. \"11\" coarsest), its `transform.scale` and its `spatial:shape`. Level 0 is 2,899,968 x 2,244,608 pixels at 0.597 m. The coarsest level is about 2 chunks across, so the whole mosaic draws at a world view with no zoom gesture. Each level is a group holding one `rgba` array, so the layout is level-first.\n\nNote: the store declares its conventions with schema URLs under `refs/tags/v1`, which return 404. The only released tag of each zarr-conventions convention is `v0.1`. See the repository README.\n\nMeasured browser outcome, 2026-11-06: draws as true colour at a world view, with 956 differing samples on the canvas and no notice. It transferred 2.65 MB, the largest single response being 0.30 MB. No render is declared and no statistics are needed, because the samples are 8-bit RGBA display values.",
+  "license": "proprietary",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          6.6,
+          35.5,
+          18.6,
+          47.1
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "keywords": [
+    "renders",
+    "orthophoto",
+    "rgba",
+    "multiscales-object",
+    "zarr-v3"
+  ],
+  "cube:dimensions": {
+    "x": {
+      "type": "spatial",
+      "axis": "x",
+      "extent": [
+        732113.86,
+        2072513.59
+      ],
+      "reference_system": 3857,
+      "unit": "m"
+    },
+    "y": {
+      "type": "spatial",
+      "axis": "y",
+      "extent": [
+        4227273.41,
+        5959030.72
+      ],
+      "reference_system": 3857,
+      "unit": "m"
+    }
+  },
+  "cube:variables": {
+    "rgba": {
+      "dimensions": [
+        "y",
+        "x",
+        "band"
+      ],
+      "type": "data",
+      "description": "8-bit RGBA orthophoto samples"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Wild Zarr testbed"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Renders"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.source.coop/mindearth/italy-aerial/italy-aerial.zarr/zarr.json",
+      "type": "application/json",
+      "title": "Store root metadata"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://data.source.coop/mindearth/italy-aerial/italy-aerial.zarr",
+      "type": "application/vnd.zarr; version=3",
+      "title": "Italy aerial orthophoto (Zarr V3, EPSG:3857, 12 levels)",
+      "roles": [
+        "data",
+        "cloud-optimized"
+      ],
+      "bands": [
+        {
+          "name": "rgba",
+          "description": "Red, green, blue, alpha",
+          "data_type": "uint8"
+        }
+      ]
+    }
+  }
+}

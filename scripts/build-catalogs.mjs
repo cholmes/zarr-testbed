@@ -29,8 +29,11 @@ const ROOT_DESCRIPTION = [
   'The tiers are expected outcomes, not data themes. `renders` draws at a world',
   'view. `held-back` draws only after a zoom, because the store has no coarse',
   'level. `refused` must produce a named notice and must not fetch the store.',
-  '`errors` must produce a visible load error. `pending` is not yet verified in',
-  'a browser.',
+  '`errors` must produce a visible load error. `client-gaps` holds stores that',
+  'look conformant, where the client today does the wrong thing.',
+  '',
+  'Each collection says whether its outcome is expected or measured. A measured',
+  'one carries the date and the notice text.',
 ].join('\n');
 
 // One entry per tier directory, in the order the root catalog lists them.
